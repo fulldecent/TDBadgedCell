@@ -8,10 +8,10 @@
 
 import UIKit
 
-class TDBadgedCell: UITableViewCell {
+public class TDBadgedCell: UITableViewCell {
 
     // Badge value
-    var badgeString : String = "" {
+    public var badgeString : String = "" {
         didSet {
             if(badgeString == "") {
                 badgeView.removeFromSuperview()
@@ -24,16 +24,16 @@ class TDBadgedCell: UITableViewCell {
     }
     
     // Badge background colours
-    var badgeColor : UIColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1.0)
-    var badgeColorHighlighted : UIColor = .darkGray
+    public var badgeColor : UIColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1.0)
+    public var badgeColorHighlighted : UIColor = .darkGray
     
     // Font and style
-    var badgeFontSize : Float = 11.0;
-    var badgeRadius : Float = 20;
-    var badgeOffset = CGPoint(x:10, y:0);
+    public var badgeFontSize : Float = 11.0;
+    public var badgeRadius : Float = 20;
+    public var badgeOffset = CGPoint(x:10, y:0);
     private let badgeView = UIImageView()
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
         // Layout our badge's position
@@ -53,12 +53,12 @@ class TDBadgedCell: UITableViewCell {
     }
     
     // When the badge
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+    public override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
         drawBadge()
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    public override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         drawBadge()
     }
@@ -66,7 +66,11 @@ class TDBadgedCell: UITableViewCell {
     // Draw the bagde image
     private func drawBadge() {
         // Calculate the size of our string
-        let textSize : CGSize = NSString(string: badgeString).size(attributes:[NSFontAttributeName:UIFont.boldSystemFont(ofSize:CGFloat(badgeFontSize))])
+        let textSize: CGSize = NSString(
+            string: badgeString
+        ).size(withAttributes:[
+            .font: UIFont.boldSystemFont(ofSize: CGFloat(badgeFontSize))
+        ])
         
         // Create a frame with padding for our badge
         let height = textSize.height + 10
@@ -96,10 +100,13 @@ class TDBadgedCell: UITableViewCell {
         
         // Draw string into graphics context
         ctx.setBlendMode(CGBlendMode.clear)
-        NSString(string: badgeString).draw(in:CGRect(x:8, y:5, width:textSize.width, height:textSize.height), withAttributes: [
-            NSFontAttributeName:UIFont.boldSystemFont(ofSize:CGFloat(badgeFontSize)),
-            NSForegroundColorAttributeName: UIColor.clear
-        ])
+        NSString(string: badgeString).draw(
+            in:CGRect(x:8, y:5, width:textSize.width, height:textSize.height),
+            withAttributes: [
+                .font:UIFont.boldSystemFont(ofSize:CGFloat(badgeFontSize)),
+                .foregroundColor: UIColor.clear
+            ]
+        )
         
         let badgeImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
