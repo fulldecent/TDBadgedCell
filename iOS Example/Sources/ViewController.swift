@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TDBadgedCell
 
 class ViewController: UITableViewController {
     
@@ -19,7 +20,13 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< Updated upstream
+        
         navigationItem.rightBarButtonItem = editButtonItem
+        tableView.register(TDBadgedCell.self, forCellReuseIdentifier: "BadgedCell")
+=======
+        navigationItem.rightBarButtonItem = editButtonItem
+>>>>>>> Stashed changes
     }
 
     
@@ -28,6 +35,30 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> TDBadgedCell {
+<<<<<<< Updated upstream
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BadgedCell") as! TDBadgedCell
+        
+        cell.textLabel!.text = demoItems[indexPath.row]["title"]
+        cell.badgeString = demoItems[indexPath.row]["badge"]!
+        
+        // Set accessory views for two badges
+        if indexPath.row == 0 {
+            cell.accessoryType = .disclosureIndicator
+        }
+        
+        if indexPath.row == 1 {
+            cell.accessoryType = .checkmark
+        }
+        
+        // Set background colours for two badges
+        if indexPath.row == 2 {
+            cell.badgeColor = .orange
+        } else if indexPath.row == 3 {
+            cell.badgeColor = .red
+        }
+        
+        return cell
+=======
         var cell : TDBadgedCell? = tableView.dequeueReusableCell(withIdentifier:"BadgedCell") as! TDBadgedCell?;
         if((cell == nil)) {
             cell = TDBadgedCell(style: .default, reuseIdentifier: "BadgedCell");
@@ -54,6 +85,7 @@ class ViewController: UITableViewController {
         }
         
         return cell!
+>>>>>>> Stashed changes
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

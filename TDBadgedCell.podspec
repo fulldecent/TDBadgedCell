@@ -18,7 +18,7 @@
   "platforms": {
     "ios": null
   },
-  "source_files": "TDBadgedCell/TDBadgedCell.swift",
+  "source_files": "Sources/TDBadgedCell/*.swift",
   "requires_arc": true,
   "frameworks": "QuartzCore"
 }
